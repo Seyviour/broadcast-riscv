@@ -34,15 +34,3 @@ The table is structured in such a way that a filter and a reduced OR operation c
 😂️😂️😂️😂️😂️        😂️😂️😂️😂️😂️    😂️😂️😂️😂️😂️  
 The performance is (expectedly) bad. In the worst case  it'll take 128 clock cycles to complete a single 32-bit operation. I suspect that the average case is not much better. Caching results would improve performance significantly (worst case 36 clock cycles) but at the cost of using at least 8 more registers. 
 
-
-
-0, 83, 147, 206
-48, 107, 171, 254
-
-
-2 -> 2, 1, 4
-3 -> 3, 5, 6
-4 -> 4, 1, 2
-5 -> 5, 6, 3
-6 -> 6, 3, 5
-7 -> 7
