@@ -12,24 +12,22 @@ module Cycler (
     */
 
 
-    reg [7:0] vectorROM [0: 7];
+    reg [7:0] vectorROM [0: 3];
 
-    reg [2:0] index; 
+    reg [1:0] index; 
 
     initial begin
-        // vector = A | B | carry_cin0 | sum | carry | and | or | xor
-        vectorROM[0] = 8'b000_00_000;
-        vectorROM[1] = 8'b010_10_011;
-        vectorROM[2] = 8'b100_10_011; 
-        vectorROM[3] = 8'b110_01_110;
-        vectorROM[4] = 8'b001_10_000;
-        vectorROM[5] = 8'b011_01_011;
-        vectorROM[6] = 8'b101_01_011; 
-        vectorROM[7] = 8'b111_11_110; 
+
+        //vector = A | B | X | carry1/OR | sum1/EQ | sum0/XOR | carry0/AND | LT |
+        vectorROM[0] = 8'b00_0_0_1_0_0_0; 
+        vectorROM[1] = 8'b01_0_1_0_1_0_1; 
+        vectorROM[2] = 8'b10_0_1_0_1_0_0; 
+        vectorROM[3] = 8'b11_0_1_1_0_1_0; 
+
     end
 
     always @(posedge clk) begin
-        index <= (reset)? 3'b0: index+1'b1;
+        index <= (reset)? 2'b0: index+1'b1;
         vector <= vectorROM[index]; 
     end
 
